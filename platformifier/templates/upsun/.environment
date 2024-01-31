@@ -12,6 +12,14 @@ export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${D
 # Set Laravel-specific environment variables
 export DB_CONNECTION="$DB_SCHEME"
 export DB_DATABASE="$DB_PATH"
+
+export APP_NAME="${PLATFORM_APPLICATION_NAME}"
+export APP_ENV="${PLATFORM_ENVIRONMENT_TYPE}"
+export APP_KEY=$(echo "${PLATFORM_PROJECT_ENTROPY}" | cut -c 1-31)
+export APP_DEBUG=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo "false" || echo "true")
+# this one we'll need more work
+#export APP_URL=http://localhost
+
 {{- end -}}
 {{- if .Cache }}
 
