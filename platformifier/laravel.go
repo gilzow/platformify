@@ -28,6 +28,8 @@ type laravelPlatformifier struct {
 
 func (p *laravelPlatformifier) Platformify(ctx context.Context, input *UserInput) error {
 	// Check for the Laravel Bridge.
+	out, _, _ := colors.FromContext(ctx)
+	fmt.Fprintln(out, colors.Colorize(colors.AccentCode, "yo yo! you be runnin' Laravel!"))
 	appRoot := filepath.Join(input.Root, input.ApplicationRoot)
 	composerJSONPaths := p.fileSystem.Find(appRoot, composerJSONFile, false)
 	for _, composerJSONPath := range composerJSONPaths {
